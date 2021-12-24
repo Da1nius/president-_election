@@ -53,21 +53,28 @@ $ mvn clean install
 
 **Definition**
 
-`GET /candidates`
+`GET /Candidates`
 
 **Response**
-- `200  OK` on success
 
 ```json
 [
-    {
-        "fullName": "Uzumaki Naruto",
-        "number": 1,
-        "agenda": "An “ultra-millionaire tax” on people worth more than 50 million and a major overhaul of housing policies."
-    },
-    {
-        "fullName": "Uchiha Itachi",
-        "number": 2,
-        "agenda": "Spend 1.7 trillion to set the Konoha on track to eliminate net greenhouse gas emissions by 2050."
-    }
+   {
+      "first_name":"Homer",
+      "last_name":"Simpson",
+      "agenda":"Free donuts every friday!",
+      "list_number":1
+   },
+   {
+      "first_name":"Moe",
+      "last_name":"Szislack",
+      "agenda":"Will rise production of alcohol",
+      "list_number":2
+   },
+   {
+      "first_name":"Ned",
+      "last_name":"Flanders",
+      "agenda":"Few new churches would be nice !",
+      "list_number":3
+   }
 ]
