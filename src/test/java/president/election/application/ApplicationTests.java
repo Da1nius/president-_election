@@ -56,7 +56,7 @@ public class ApplicationTests {
 	}
 	@Test
 	public void TestVotingDuplicate() throws Exception {
-		MvcResult mvcResult = this.mockMvc.perform(post("/Vote/{person_id}/{List_number}",1,2))
+		MvcResult mvcResult = this.mockMvc.perform(post("/vote/{person_id}/{List_number}",1,2))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(jsonPath("$.response").value("Sorry but you can't support twice!"))
 				.andReturn();
@@ -66,7 +66,7 @@ public class ApplicationTests {
 	}
 	@Test
 	public void TestVotingError() throws Exception {
-		MvcResult mvcResult = this.mockMvc.perform(post("/Vote/{person_id}/{List_number}",60,4))
+		MvcResult mvcResult = this.mockMvc.perform(post("/vote/{person_id}/{List_number}",60,4))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(jsonPath("$.response").value("NullPointerException thrown! Wrong credentials!!"))
 				.andReturn();
@@ -77,7 +77,7 @@ public class ApplicationTests {
 
 	@Test
 	public void TestVotingSuccessful() throws Exception {
-		MvcResult mvcResult = this.mockMvc.perform(post("/Vote/{person_id}/{List_number}",7,1))
+		MvcResult mvcResult = this.mockMvc.perform(post("/vote/{person_id}/{List_number}",7,1))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(jsonPath("$.response").value("You have voted!"))
 				.andReturn();
