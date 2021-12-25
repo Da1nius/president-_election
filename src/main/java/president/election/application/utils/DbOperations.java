@@ -1,12 +1,18 @@
-package PresidentElectionApplication.utils;
+package president.election.application.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Mysql connector file
+ */
 public class DbOperations {
-
+    /**
+     *
+     * @return connection to our db.
+     */
     public static Connection connectToDb() {
 
         String DB_URL = "jdbc:mysql://localhost/election_db";
@@ -22,6 +28,11 @@ public class DbOperations {
         return connection;
     }
 
+    /**
+     * Disconnecting from db.
+     * @param connection
+     * @param statement
+     */
     public static void disconnectFromDb(Connection connection, Statement statement) {
         try {
             if (connection != null && statement != null) {

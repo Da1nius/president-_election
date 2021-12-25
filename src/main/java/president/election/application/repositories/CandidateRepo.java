@@ -1,7 +1,9 @@
-package PresidentElectionApplication.Repositories;
+package president.election.application.repositories;
 
-import PresidentElectionApplication.Models.Candidate;
+import president.election.application.models.Candidate;
 import org.springframework.data.jpa.repository.JpaRepository;
-
+/**
+ * CandidateRepository
+ */
 public interface CandidateRepo extends JpaRepository<Candidate, Integer> {
 }

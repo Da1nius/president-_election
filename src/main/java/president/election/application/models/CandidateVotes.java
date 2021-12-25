@@ -1,6 +1,4 @@
-package PresidentElectionApplication.Models;
-
-import java.util.List;
+package president.election.application.models;
 
 public class CandidateVotes {
     private Candidate candidate;

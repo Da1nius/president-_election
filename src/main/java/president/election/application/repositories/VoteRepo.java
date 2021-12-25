@@ -1,10 +1,10 @@
-package PresidentElectionApplication.Repositories;
+package president.election.application.repositories;
 
-import PresidentElectionApplication.Models.Candidate;
-import PresidentElectionApplication.Models.CandidateVotes;
-import PresidentElectionApplication.Models.RegionVotes;
-import PresidentElectionApplication.Models.Vote;
-import PresidentElectionApplication.utils.DbOperations;
+import president.election.application.models.Candidate;
+import president.election.application.models.CandidateVotes;
+import president.election.application.models.RegionVotes;
+import president.election.application.models.Vote;
+import president.election.application.utils.DbOperations;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.sql.Connection;
@@ -13,10 +13,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * VoteRepository
+ */
 public interface VoteRepo extends JpaRepository<Vote, Integer> {
-
-     default List<CandidateVotes> Distribution() throws SQLException {
+    /**
+     *
+     * @return Number of votes for each candidate.
+     * @throws SQLException
+     */
+     default List<CandidateVotes> getVotesPerCandidate() throws SQLException {
          List<CandidateVotes> candidateVotes = new ArrayList<>();
          Connection connection = DbOperations.connectToDb();
         String sql = " select candidate.first_name,last_name,List_number,agenda, Count(vote_id)\n" +
@@ -37,7 +43,12 @@ public interface VoteRepo extends JpaRepository<Vote, Integer> {
         return candidateVotes;
     }
 
-    default List<RegionVotes> RegionVotes() throws SQLException {
+    /**
+     *
+     * @return Number of votes across regions.
+     * @throws SQLException
+     */
+    default List<RegionVotes> regionVotes() throws SQLException {
         List<RegionVotes> regionVotes = new ArrayList<>();
         Connection connection = DbOperations.connectToDb();
         String sql = " select person.region,Count(vote_id)\n" +

@@ -1,9 +1,9 @@
-package PresidentElectionApplication.Models;
+package president.election.application.models;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Candidate")
+@Table(name = "candidate")
 public class Candidate {
     @Id
     @GeneratedValue

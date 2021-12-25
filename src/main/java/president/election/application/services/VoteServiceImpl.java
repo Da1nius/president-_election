@@ -1,18 +1,17 @@
-package PresidentElectionApplication.Services;
+package president.election.application.services;
 
 
-import PresidentElectionApplication.Models.CandidateVotes;
-import PresidentElectionApplication.Models.RegionVotes;
-import PresidentElectionApplication.Models.Vote;
-import PresidentElectionApplication.Repositories.CandidateRepo;
-import PresidentElectionApplication.Repositories.PersonRepo;
-import PresidentElectionApplication.Repositories.VoteRepo;
+import president.election.application.models.CandidateVotes;
+import president.election.application.models.RegionVotes;
+import president.election.application.models.Vote;
+import president.election.application.repositories.CandidateRepo;
+import president.election.application.repositories.PersonRepo;
+import president.election.application.repositories.VoteRepo;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 @Service("voteService")
 @Transactional
@@ -49,13 +48,13 @@ public class VoteServiceImpl implements VoteService{
     }
 
     @Override
-    public List<CandidateVotes> getDistribution() throws SQLException {
-        return  voteRepo.Distribution();
+    public List<CandidateVotes> getVotesPerCandidate() throws SQLException {
+        return  voteRepo.getVotesPerCandidate();
     }
 
     @Override
-    public List<RegionVotes> RegionVotes() throws SQLException {
-        return voteRepo.RegionVotes();
+    public List<RegionVotes> regionVotes() throws SQLException {
+        return voteRepo.regionVotes();
     }
 
 

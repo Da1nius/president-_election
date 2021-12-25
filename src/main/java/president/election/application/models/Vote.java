@@ -1,4 +1,4 @@
-package PresidentElectionApplication.Models;
+package president.election.application.models;
 
 import javax.persistence.*;
 

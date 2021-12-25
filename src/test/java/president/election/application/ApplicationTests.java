@@ -1,8 +1,7 @@
-package PresidentElectionApplication;
+package president.election.application;
 
-
-import PresidentElectionApplication.Services.CandidateService;
-import PresidentElectionApplication.Services.VoteService;
+import president.election.application.services.CandidateService;
+import president.election.application.services.VoteService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.minidev.json.JSONArray;
 import net.minidev.json.parser.JSONParser;
@@ -18,6 +17,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,7 +36,6 @@ public class ApplicationTests {
 	@BeforeEach
 	public void setup() throws Exception {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-
 	}
 
 	@Test
@@ -57,7 +56,7 @@ public class ApplicationTests {
 	}
 	@Test
 	public void TestVotingDuplicate() throws Exception {
-		MvcResult mvcResult = this.mockMvc.perform(get("/Vote/{person_id}/{List_number}",1,2))
+		MvcResult mvcResult = this.mockMvc.perform(post("/Vote/{person_id}/{List_number}",1,2))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(jsonPath("$.response").value("Sorry but you can't support twice!"))
 				.andReturn();
@@ -65,10 +64,9 @@ public class ApplicationTests {
 		Assert.assertEquals("application/json",
 				mvcResult.getResponse().getContentType());
 	}
-
 	@Test
 	public void TestVotingError() throws Exception {
-		MvcResult mvcResult = this.mockMvc.perform(get("/Vote/{person_id}/{List_number}",60,4))
+		MvcResult mvcResult = this.mockMvc.perform(post("/Vote/{person_id}/{List_number}",60,4))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(jsonPath("$.response").value("NullPointerException thrown! Wrong credentials!!"))
 				.andReturn();
@@ -79,9 +77,9 @@ public class ApplicationTests {
 
 	@Test
 	public void TestVotingSuccessful() throws Exception {
-		MvcResult mvcResult = this.mockMvc.perform(get("/Vote/{person_id}/{List_number}",5,1))
+		MvcResult mvcResult = this.mockMvc.perform(post("/Vote/{person_id}/{List_number}",7,1))
 				.andDo(print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.response").value("NullPointerException thrown! Wrong credentials!!"))
+				.andExpect(jsonPath("$.response").value("You have voted!"))
 				.andReturn();
 
 		Assert.assertEquals("application/json",

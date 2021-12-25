@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.1</version>
+		<version>2.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>PresidentElectionApplication</groupId>
@@ -14,12 +14,20 @@
 	<name>demo</name>
 	<description>Application to elect president</description>
 	<properties>
-			<asciidoctor.input.directory>${project.basedir}/src/docs/asciidoc</asciidoctor.input.directory>
-			<generated.asciidoc.directory>${project.build.directory}/asciidoc/generated</generated.asciidoc.directory>
-			<asciidoctor.html.output.directory>${project.build.outputDirectory}</asciidoctor.html.output.directory> <!-- target/classes -->
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -70,62 +78,6 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.5.0</version>
-				<configuration>
-					<mainClass>de.philipphauer.blog.apiDocGen.SwaggerAndAsciiDocGenerator</mainClass>
-					<arguments>
-						<argument>${project.build.outputDirectory}</argument>
-						<argument>${generated.asciidoc.directory}</argument>
-					</arguments>
-				</configuration>
-				<executions>
-					<execution>
-						<id>generate-swagger-and-asciidoc</id>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>java</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.asciidoctor</groupId>
-				<artifactId>asciidoctor-maven-plugin</artifactId>
-				<version>1.5.3</version>
-				<configuration>
-					<sourceDirectory>${asciidoctor.input.directory}</sourceDirectory>
-					<sourceDocumentName>index.adoc</sourceDocumentName>
-					<attributes>
-						<icons>font</icons>
-						<doctype>book</doctype>
-						<toc>left</toc>
-						<toclevels>3</toclevels>
-						<numbered></numbered>
-						<hardbreaks></hardbreaks>
-						<sectlinks></sectlinks>
-						<sectanchors></sectanchors>
-						<generated>${generated.asciidoc.directory}</generated>
-						<stylesheet>custom.css</stylesheet>
-					</attributes>
-				</configuration>
-				<executions>
-					<execution>
-						<id>output-html</id>
-						<phase>test</phase>
-						<goals>
-							<goal>process-asciidoc</goal>
-						</goals>
-						<configuration>
-							<backend>html5</backend>
-							<sourceHighlighter>highlightjs</sourceHighlighter>
-							<outputDirectory>${asciidoctor.html.output.directory}</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
