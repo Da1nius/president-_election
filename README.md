@@ -11,6 +11,7 @@ As well as vote distribution trough regions and candidates.
 ###### All interaction with an application were implemented through REST endpoints.
 ###### Code must be readable and clean.
 ###### Final delivery is Maven project.
+###### Project is tested with integration tests.
 
 ## Project MVC model
 
@@ -216,6 +217,27 @@ There are 3 potential scenaries.
 ]
 ```
 - When there is more than 2 candidates with same vote %  return empty list.
+
+### Integration testing
+
+**Definition**
+- For integration test I use MockMvc that provides support for Spring MVC testing.It encapsulates all web application beans and makes them available for testing. <br />
+
+**Code**
+
+- We use vote request and submit new vote from voted person perspectives. 
+![image](https://user-images.githubusercontent.com/96183927/147389471-84dbad1e-f542-406a-9245-2b0124bcc91d.png)
+
+**Response**
+- Response from code 
+
+![image](https://user-images.githubusercontent.com/96183927/147389506-fef9e187-e3d2-4aad-b5a8-48ae306608f4.png)
+
+### Other tests have same logic for different cases check them in code ;).
+
+
+
+
 
 
 
