@@ -20,6 +20,7 @@ As well as vote distribution trough regions and candidates.
 - Vote - Java object that holds main data about submited votes.
 - RegionVotes - Java object that holds main data about votes distribution in regions.
 - CandidateVotes - Java object that holds main data about votes distribution among candidates.
+- Integration tests.
 
 ### Controller
 ElectionRestContrller - Main program controller that sends requests.
@@ -39,7 +40,7 @@ $ mvn clean install
 
 ### Mysql database installation
 
-- Install mysql workbench.
+- Install mysql workbench. https://dev.mysql.com/downloads/mysql/
 - Import SQL database.
 
 ## API Usage
@@ -218,4 +219,21 @@ There are 3 potential scenaries.
 - When there is more than 2 candidates with same vote %  return empty list.
 
 
+### Integration testing
+
+**Description** 
+
+MockMvc provides support for Spring MVC testing. It encapsulates all web application beans and makes them available for testing.
+
+**Code**
+
+##### All the dependencies and imports are in project.
+- Test takes already submited vote and returns error message.
+![image](https://user-images.githubusercontent.com/96183927/147389737-0ee4bb8c-e0d1-42df-8284-c4ee21ece25d.png)
+
+**Result**
+
+![image](https://user-images.githubusercontent.com/96183927/147389744-3e275a36-18a2-48dc-a946-0fd53eb7b8fc.png)
+ 
+ ### More test cases you can find in project.
 
