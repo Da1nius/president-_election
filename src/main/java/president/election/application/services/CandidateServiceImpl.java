@@ -54,18 +54,14 @@ public class CandidateServiceImpl implements CandidateService {
         else if (mostVoted.size() == 1) {
             double candidateVotePercentage = ((double) mostVoted.get(0).getVotes() / totalVotes()) * 100;
             winnersList.add(mostVoted.get(0).getCandidate());
-            var message = "u hey";
             if (candidateVotePercentage <= 50.0f) {
                 candidates.remove(mostVoted);
                 var leastVoted = topCandidates(candidates);
                 if (leastVoted.size() > 1) {
-                    message = "too many geys";
                 } else {
                     winnersList.add(leastVoted.get(0).getCandidate());
-                    message = "u geys";
                 }
             }
-            System.out.println(message);
         }
         return winnersList;
     }
